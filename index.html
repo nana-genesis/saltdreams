@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🌊 SALT DREAMS | Revista de Luxo & Estilo Praiano</title>
+    
+    <!-- Bootstrap 5 CDN + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            background: #0a2f2a;
+        }
+        
+        /* === CENÁRIO EM MOVIMENTO - VISTA PRAIANA DOS SONHOS === */
+        .dream-scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        /* Céu gradiente em movimento */
+        .sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(135deg, #ffb347, #ff7e5e, #f6d5b3, #c2e0f0);
+            background-size: 400% 400%;
+            animation: skyGradient 20s ease infinite;
+        }
+        
+        @keyframes skyGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Sol radiante */
+        .sun {
+            position: absolute;
+            top: 15%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #ffdd88, #ffaa44);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 200, 100, 0.8);
+            animation: sunGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes sunGlow {
+            0% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 40px rgba(255, 200, 100, 0.6);}
+            100% { transform: scale(1.08); opacity: 1; box-shadow: 0 0 90px rgba(255, 220, 120, 0.9);}
+        }
+        
+        /* Ondas do mar em movimento */
+        .ocean {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 45%;
+            background: linear-gradient(180deg, #3bb3c1, #1e6b6f, #0a4a4a);
+            overflow: hidden;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: repeating-linear-gradient(transparent 0px, transparent 98px, rgba(255,255,240,0.3) 98px, rgba(255,240,200,0.5) 100px);
+            animation: waveMove 8s linear infinite;
+        }
+        
+        .wave2 {
+            bottom: 20px;
+            opacity: 0.6;
+            animation: waveMove 12s linear infinite reverse;
+        }
+        
+        .wave3 {
+            bottom: 40px;
+            opacity: 0.4;
+            animation: waveMove 16s linear infinite;
+        }
+        
+        @keyframes waveMove {
+            0% { transform: translateX(0%);}
+            100% { transform: translateX(-50%);}
+        }
+        
+        /* Nuvens flutuantes - sem emojis */
+        .cloud {
+            position: absolute;
+            background: rgba(255,255,245,0.85);
+            border-radius: 1000px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            animation: floatCloud 30s linear infinite;
+        }
+        
+        .cloud1 { width: 180px; height: 100px; top: 8%; left: -200px; animation-duration: 45s; }
+        .cloud2 { width: 240px; height: 130px; top: 20%; left: -300px; animation-duration: 55s; animation-delay: -10s; }
+        .cloud3 { width: 140px; height: 80px; top: 45%; left: -150px; animation-duration: 35s; animation-delay: -5s; }
+        
+        @keyframes floatCloud {
+            0% { transform: translateX(0); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateX(calc(100vw + 300px)); opacity: 0; }
+        }
+        
+        /* Card principal - estilo praiano luxuoso */
+        .dream-card {
+            position: relative;
+            z-index: 10;
+            max-width: 580px;
+            margin: 2rem auto;
+            background: rgba(255, 252, 240, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            border: 1px solid rgba(255, 215, 140, 0.7);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 235, 190, 0.5);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .dream-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        /* Header inspirado em revista de luxo */
+        .magazine-header {
+            background: linear-gradient(135deg, #d4af37, #f3c26b, #e6b422);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .magazine-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: #1e3b3a;
+            text-shadow: 2px 2px 0 rgba(255,245,200,0.8);
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        
+        .magazine-header .tagline {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c2a1e;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .badge-exclusive {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #ff6b4a;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            animation: pulseBadge 1.5s infinite;
+        }
+        
+        @keyframes pulseBadge {
+            0% { transform: scale(1); background: #ff6b4a; }
+            50% { transform: scale(1.05); background: #ff8c6e; }
+            100% { transform: scale(1); background: #ff6b4a; }
+        }
+        
+        .body-content {
+            padding: 2rem 2rem 1.5rem;
+        }
+        
+        .benefits {
+            background: linear-gradient(120deg, #fff6e8, #fff0e0);
+            border-radius: 28px;
+            padding: 1.2rem;
+            margin-bottom: 1.8rem;
+            border-left: 5px solid #d4af37;
+        }
+        
+        .benefits i {
+            color: #d4af37;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .form-glam .form-label {
+            font-weight: 600;
+            color: #2c5a55;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .form-glam .form-control {
+            border-radius: 60px;
+            border: 1.5px solid #e6cf9e;
+            background: #fffefa;
+            padding: 12px 20px;
+            transition: all 0.2s;
+        }
+        
+        .form-glam .form-control:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        }
+        
+        .btn-dream {
+            background: linear-gradient(95deg, #d4af37, #f3c26b);
+            border: none;
+            padding: 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 60px;
+            color: #1e3b3a;
+            width: 100%;
+            transition: 0.2s;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+        
+        .btn-dream:hover {
+            transform: scale(1.02);
+            background: linear-gradient(95deg, #e6c450, #ffda88);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-dream:disabled {
+            opacity: 0.7;
+            transform: none;
+            cursor: not-allowed;
+        }
+        
+        .rate-info {
+            background: rgba(30, 59, 58, 0.15);
+            border-radius: 40px;
+            padding: 8px 15px;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #1e5a55;
+            font-weight: 500;
+        }
+        
+        .footer-note {
+            background: rgba(30, 59, 58, 0.85);
+            padding: 12px;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #f7ecc7;
+        }
+        
+        @media (max-width: 576px) {
+            .body-content { padding: 1.5rem; }
+            .magazine-header h1 { font-size: 1.8rem; }
+        }
+        
+        /* Loading spinner */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .spinner-icon {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- CENÁRIO DOS SONHOS EM MOVIMENTO - SEM EMOJIS FLUTUANTES -->
+<div class="dream-scene">
+    <div class="sky"></div>
+    <div class="sun"></div>
+    <div class="ocean">
+        <div class="wave" style="background: repeating-linear-gradient(transparent 0px, transparent 95px, rgba(255,255,230,0.4) 95px, rgba(255,250,210,0.6) 100px); width: 200%; height: 90px;"></div>
+        <div class="wave wave2" style="width: 200%; height: 70px;"></div>
+        <div class="wave wave3" style="width: 200%; height: 50px;"></div>
+    </div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+    <!-- SEM EMOJIS FLUTUANTES - APENAS ELEMENTOS NATURAIS -->
+</div>
+
+<!-- FORMULÁRIO DE CADASTRO - REVISTA SALT DREAMS -->
+<div class="container" style="position: relative; z-index: 20; padding: 1.5rem;">
+    <div class="dream-card">
+        <div class="magazine-header">
+            <div class="badge-exclusive">
+                <i class="bi bi-gem"></i> EDIÇÃO LIMITADA
+            </div>
+            <h1>
+                <i class="bi bi-water"></i> SALT DREAMS
+            </h1>
+            <div class="tagline">
+                <i class="bi bi-star-fill"></i> A revista que celebra o luxo, o mar e o estilo de vida dos sonhos <i class="bi bi-star-fill"></i>
+            </div>
+        </div>
+        
+        <div class="body-content">
+            <!-- Benefícios exclusivos para tornar o cadastro irresistível -->
+            <div class="benefits">
+                <div class="row g-2">
+                    <div class="col-12">
+                        <i class="bi bi-check-circle-fill"></i> <strong>ACESSO ANTECIPADO</strong> – Edições impressas de colecionador
+                    </div>
+                    <div class="col-12">
+                        <i class="bi bi-diamond"></i> <strong>CONTEÚDO VIP</strong> – Entrevistas, destinos secretos e moda praiana
+                    </div>
+                    <div class="col-12">
+                        <i class="bi bi-gift-fill"></i> <strong>BRINDE EXCLUSIVO</strong> – Guia digital "Os Paraísos Escondidos do Brasil"
+                    </div>
+                </div>
+            </div>
+            
+            <form id="dreamForm" class="form-glam" novalidate>
+                <div class="mb-4">
+                    <label for="nome" class="form-label">
+                        <i class="bi bi-person-badge"></i> Nome completo
+                    </label>
+                    <input type="text" class="form-control" id="nome" name="nome" 
+                           placeholder="Seu nome completo" autocomplete="name" required>
+                    <div class="invalid-feedback" id="nomeError"></div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="email" class="form-label">
+                        <i class="bi bi-envelope-paper-heart"></i> E-mail
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                           placeholder="seu@email.com" autocomplete="email" required>
+                    <div class="invalid-feedback" id="emailError"></div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="telefone" class="form-label">
+                        <i class="bi bi-phone-vibrate"></i> Telefone com WhatsApp
+                    </label>
+                    <input type="tel" class="form-control" id="telefone" name="telefone" 
+                           placeholder="(11) 99999-9999" autocomplete="tel" required>
+                    <div class="invalid-feedback" id="telefoneError"></div>
+                </div>
+                
+                <div class="d-grid gap-2 mt-3">
+                    <button type="submit" class="btn-dream" id="submitBtn">
+                        QUERO FAZER PARTE
+                    </button>
+                </div>
+                
+                <div id="formMessage" class="mt-3"></div>
+                
+                <div class="rate-info mt-3 d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-shield-check"></i> Ambiente seguro e exclusivo</span>
+                    <span id="rateLimitCounter"><i class="bi bi-hourglass-split"></i> Tentativas: 3/3</span>
+                </div>
+            </form>
+        </div>
+        <div class="footer-note">
+            <i class="bi bi-lock-fill"></i> Dados protegidos · Nunca compartilhamos informações · Junte-se à comunidade SALT DREAMS
+        </div>
+    </div>
+</div>
+
+<script>
+    // ==================== SISTEMA COMPLETO ====================
+    // Rate limiting: 3 tentativas a cada 2 minutos
+    // Logs estruturados, sem vazamento de dados, tratamento de erros
+    // ==========================================================
+    
+    (function() {
+        const RATE_KEY = 'saltdreams_form_attempts';
+        const MAX_ATTEMPTS = 3;
+        const RATE_WINDOW_MS = 2 * 60 * 1000;
+        let structuredLogs = [];
+        
+        function addLog(level, action, details = {}) {
+            const safeDetails = { ...details };
+            if (safeDetails.email) {
+                let parts = safeDetails.email.split('@');
+                if (parts.length === 2) safeDetails.email = parts[0].substring(0,2) + '***@' + parts[1];
+            }
+            if (safeDetails.nome) safeDetails.nome = safeDetails.nome.substring(0,2) + '***';
+            if (safeDetails.telefone) safeDetails.telefone = safeDetails.telefone.slice(0,3) + '****' + safeDetails.telefone.slice(-2);
+            
+            const logEntry = {
+                timestamp: new Date().toISOString(),
+                level,
+                action,
+                details: safeDetails
+            };
+            structuredLogs.push(logEntry);
+            if (structuredLogs.length > 50) structuredLogs.shift();
+            console.log(`[${level}] ${action}`, safeDetails);
+        }
+        
+        function getRateData() {
+            const stored = sessionStorage.getItem(RATE_KEY);
+            if (!stored) return { attempts: 0, firstAttemptTime: null };
+            try { return JSON.parse(stored); } catch(e) { return { attempts: 0, firstAttemptTime: null }; }
+        }
+        
+        function setRateData(attempts, firstAttemptTime) {
+            sessionStorage.setItem(RATE_KEY, JSON.stringify({ attempts, firstAttemptTime }));
+        }
+        
+        function isRateLimited() {
+            const data = getRateData();
+            if (data.attempts >= MAX_ATTEMPTS && data.firstAttemptTime) {
+                const elapsed = Date.now() - data.firstAttemptTime;
+                if (elapsed < RATE_WINDOW_MS) {
+                    return { limited: true, remainingSeconds: Math.ceil((RATE_WINDOW_MS - elapsed) / 1000) };
+                } else {
+                    resetRateLimit();
+                    return { limited: false, remainingSeconds: 0 };
+                }
+            }
+            return { limited: false, remainingSeconds: 0 };
+        }
+        
+        function resetRateLimit() {
+            setRateData(0, null);
+            updateUI();
+            addLog('INFO', 'rate_limit_reset', { reason: 'window_expired' });
+        }
+        
+        function incrementAttempt() {
+            const data = getRateData();
+            const now = Date.now();
+            let attempts = data.attempts;
+            let firstTime = data.firstAttemptTime;
+            
+            if (attempts === 0 || !firstTime || (now - firstTime) >= RATE_WINDOW_MS) {
+                firstTime = now;
+                attempts = 1;
+            } else {
+                attempts++;
+            }
+            setRateData(attempts, firstTime);
+            updateUI();
+            addLog('INFO', 'attempt_incremented', { currentAttempts: attempts });
+            return attempts;
+        }
+        
+        function updateUI() {
+            const data = getRateData();
+            const used = data.attempts;
+            const remaining = Math.max(0, MAX_ATTEMPTS - used);
+            const counterSpan = document.getElementById('rateLimitCounter');
+            const limitStatus = isRateLimited();
+            if (limitStatus.limited) {
+                counterSpan.innerHTML = `<i class="bi bi-lock-fill"></i> Aguarde ${limitStatus.remainingSeconds}s para novo cadastro`;
+            } else {
+                counterSpan.innerHTML = `<i class="bi bi-hourglass-split"></i> Tentativas restantes: ${remaining}`;
+            }
+        }
+        
+        function validateFields(nome, email, telefone) {
+            let valid = true;
+            document.getElementById('nome').classList.remove('is-invalid');
+            document.getElementById('email').classList.remove('is-invalid');
+            document.getElementById('telefone').classList.remove('is-invalid');
+            
+            const nomeTrim = nome.trim();
+            if (nomeTrim.length < 3 || nomeTrim.length > 80 || !/^[A-Za-zÀ-ÿ\s']+$/.test(nomeTrim)) {
+                document.getElementById('nome').classList.add('is-invalid');
+                document.getElementById('nomeError').innerText = 'Nome deve ter ao menos 3 letras e apenas caracteres válidos.';
+                valid = false;
+                addLog('WARN', 'validation_failed', { field: 'nome' });
+            }
+            
+            const emailTrim = email.trim();
+            const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            if (!emailTrim || !emailRegex.test(emailTrim) || emailTrim.length > 100) {
+                document.getElementById('email').classList.add('is-invalid');
+                document.getElementById('emailError').innerText = 'E-mail inválido. Use formato: nome@dominio.com';
+                valid = false;
+                addLog('WARN', 'validation_failed', { field: 'email' });
+            }
+            
+            const telTrim = telefone.trim().replace(/\D/g, '');
+            if (telTrim.length < 10 || telTrim.length > 11 || !/^[1-9]{2}[0-9]{8,9}$/.test(telTrim)) {
+                document.getElementById('telefone').classList.add('is-invalid');
+                document.getElementById('telefoneError').innerText = 'Telefone inválido. Use (DDD) 9xxxx-xxxx';
+                valid = false;
+                addLog('WARN', 'validation_failed', { field: 'telefone' });
+            }
+            return valid;
+        }
+        
+        function showMessage(msg, type = 'success') {
+            const msgDiv = document.getElementById('formMessage');
+            const icon = type === 'success' ? 'bi-check-circle-fill' : (type === 'danger' ? 'bi-exclamation-triangle-fill' : 'bi-info-circle-fill');
+            const bgClass = type === 'success' ? 'alert-success' : (type === 'danger' ? 'alert-danger' : 'alert-warning');
+            msgDiv.innerHTML = `
+                <div class="alert ${bgClass} d-flex align-items-center" role="alert" style="border-radius: 60px; padding: 12px 18px;">
+                    <i class="bi ${icon} me-2 fs-5"></i>
+                    <div>${msg}</div>
+                </div>
+            `;
+            setTimeout(() => {
+                if (msgDiv.firstChild) msgDiv.firstChild.style.opacity = '0';
+                setTimeout(() => { if (msgDiv.firstChild) msgDiv.innerHTML = ''; }, 500);
+            }, 5000);
+        }
+        
+        async function sendRegistration(payload) {
+            addLog('INFO', 'registration_attempt', { email_domain: payload.email.split('@')[1] || 'unknown' });
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    addLog('SUCCESS', 'registration_completed', { message: 'Usuário associado à SALT DREAMS' });
+                    resolve({ ok: true, msg: '✨ Bem-vindo(a) à família SALT DREAMS! Você receberá um e-book exclusivo e acesso VIP. 🌊' });
+                }, 800);
+            });
+        }
+        
+        const form = document.getElementById('dreamForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            document.getElementById('formMessage').innerHTML = '';
+            
+            const rateStatus = isRateLimited();
+            if (rateStatus.limited) {
+                showMessage(`⏳ Limite de cadastros atingido. Aguarde ${rateStatus.remainingSeconds} segundos para tentar novamente.`, 'danger');
+                addLog('RATE_LIMIT', 'blocked_submission', { remaining: rateStatus.remainingSeconds });
+                updateUI();
+                return;
+            }
+            
+            const nomeRaw = document.getElementById('nome').value.replace(/[<>]/g, '').trim();
+            const emailRaw = document.getElementById('email').value.replace(/[<>]/g, '').trim().toLowerCase();
+            const telefoneRaw = document.getElementById('telefone').value.replace(/[<>]/g, '').trim();
+            
+            if (!validateFields(nomeRaw, emailRaw, telefoneRaw)) {
+                showMessage('❌ Por favor, corrija os campos destacados para fazer parte da revista.', 'danger');
+                return;
+            }
+            
+            incrementAttempt();
+            const afterIncLimit = isRateLimited();
+            if (afterIncLimit.limited) {
+                updateUI();
+                showMessage(`🔒 Limite de tentativas. Tente novamente em ${afterIncLimit.remainingSeconds}s.`, 'danger');
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-icon">⌛</span> Cadastrando...';
+            
+            try {
+                const response = await sendRegistration({ nome: nomeRaw, email: emailRaw, telefone: telefoneRaw });
+                if (response.ok) {
+                    showMessage(response.msg, 'success');
+                    document.getElementById('nome').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('telefone').value = '';
+                    document.getElementById('nome').classList.remove('is-invalid');
+                    document.getElementById('email').classList.remove('is-invalid');
+                    document.getElementById('telefone').classList.remove('is-invalid');
+                    addLog('SUCCESS', 'form_submitted_clean', {});
+                } else {
+                    showMessage('Erro no servidor. Tente novamente mais tarde.', 'danger');
+                }
+            } catch (err) {
+                showMessage('⚠️ Erro na comunicação segura. Por favor, recarregue e tente.', 'danger');
+                addLog('ERROR', 'submission_exception', { error: err.message });
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'QUERO FAZER PARTE';
+                updateUI();
+            }
+        });
+        
+        updateUI();
+        addLog('INFO', 'page_loaded', { magazine: 'SALT DREAMS', maxAttempts: MAX_ATTEMPTS });
+        
+        window.__logsDream = () => console.table(structuredLogs);
+    })();
+</script>
+</body>
+</html>
